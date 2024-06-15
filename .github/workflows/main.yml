@@ -25,7 +25,8 @@ jobs:
                   go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
             - name: Set Path
               run: |
-                  export PATH=$PATH:$(go env GOPATH)/bin
+                  chmod +x $(go env GOPATH)/bin/protoc-gen-go
+                  chmod +x $(go env GOPATH)/bin/protoc-gen-go-grpc
                   echo $PATH
 
             - name: Generate proto
