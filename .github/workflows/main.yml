@@ -17,7 +17,7 @@ jobs:
         run: go version
 
       - name: Download Protobuf complier(protoc)
-        run: apt install -y protobuf-compiler
+        run: sudo apt install -y protobuf-compiler
 
       - name: Grpc Dependencies
         run: |
