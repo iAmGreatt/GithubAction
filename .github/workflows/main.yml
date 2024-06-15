@@ -3,9 +3,10 @@ name: First Workflow
 run-name: TESTING
 
 on: push
+permissions: 
+  read-all
+  write-all
 
-permissions:
-  actions: write
   
 jobs:
   setup:
