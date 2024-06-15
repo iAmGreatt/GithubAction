@@ -1,5 +1,7 @@
 name: First Workflow
 
+run-name: TESTING
+
 on: push
 
 jobs:
@@ -13,3 +15,11 @@ jobs:
 
       - name: "Setting up go environment"
         run: go version
+
+      - name: Download Protobuf complier(protoc)
+        run: apt install -y protobuf-compiler
+
+      - name: Grpc Dependencies
+        run: |
+          go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+          go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
