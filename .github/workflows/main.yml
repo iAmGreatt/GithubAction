@@ -4,6 +4,9 @@ run-name: TESTING
 
 on: push
 
+permissions:
+  actions: write
+  
 jobs:
   setup:
     runs-on: ubuntu-latest
