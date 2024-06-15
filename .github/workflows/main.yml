@@ -10,6 +10,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
       - name: Run a sample GitHub Action
         run: echo "This workflow ran successfully on the particular task"
 
