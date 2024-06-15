@@ -20,6 +20,7 @@ jobs:
           git config user.name "iAmGreatt"
           git config user.email "greatjohncena9@gmail.com"
           mkdir -p sample
+          echo "how are you" >> sample.txt
           git add .
           git commit -m "added sample"
           git push origin main  # Adjust branch name as necessary
