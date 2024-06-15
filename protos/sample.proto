@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package sample;
 
-option go_package="github.com/prha0922/githubaction/generated";
+option go_package="github.com/iAmGreatt/GithubAction/generated";
 
 message SampleRequest{
 	int32 id = 1;
