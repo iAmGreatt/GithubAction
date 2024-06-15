@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package sample;
+
+option go_package="github.com/prha0922/githubaction/generated";
+
+message SampleRequest{
+	int32 id = 1;
+}
+
+message SampleResponse{
+	int32 id = 1;
+}
+
+service SampleService{
+	rpc Sample(SampleRequest) returns (SampleResponse);
+}

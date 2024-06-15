@@ -5,40 +5,45 @@ run-name: TESTING
 on: push
 
 jobs:
-  setup:
-    runs-on: ubuntu-latest  # Fixed the key from 'run-ons' to 'runs-on'
+    setup:
+        runs-on: ubuntu-latest # Fixed the key from 'run-ons' to 'runs-on'
 
-    steps:
-      - uses: actions/checkout@v3
-      - name: Run a sample GitHub Action
-        run: echo "This workflow ran successfully on the particular task"
+        steps:
+            - uses: actions/checkout@v3
+            - name: Run a sample GitHub Action
+              run: echo "This workflow ran successfully on the particular task"
 
-      - name: "Setting up go environment"
-        run: go version
+            - name: "Setting up go environment"
+              run: go version
 
-      - name: Download Protobuf complier(protoc)
-        run: sudo apt install -y protobuf-compiler
+            - name: Download Protobuf complier(protoc)
+              run: sudo apt install -y protobuf-compiler
 
-      - name: Grpc Dependencies
-        run: |
-          go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
-          go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-      - name: Set Path
-        run: |
-          export PATH=$PATH:$(go env GOPATH)/bin
-          echo $PATH
+            - name: Grpc Dependencies
+              run: |
+                  go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+                  go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+            - name: Set Path
+              run: |
+                  export PATH=$PATH:$(go env GOPATH)/bin
+                  echo $PATH
 
-      - name: Generate proto
-        run: |
-          mkdir -p generated
-          protoc --go_out=generated --go_opt=paths=source_relative --go-grpc_out=generated --go-grpc_opt=paths=source_relative protos/*.proto
+            - name: Generate proto
+              run: |
+                  mkdir -p generated
+                  protoc \
+                  --go_out=generated \
+                  --go_opt=paths=source_relative \
+                  --go-grpc_out=generated \
+                  --go-grpc_opt=paths=source_relative \
+                  protos/*.proto
 
-      - name: Commit and push changes
-        run: |
-          git config user.name "iAmGreatt"
-          git config user.email "greatjohncena9@gmail.com"
-          git add generated/*
-          git commit -m "Generate protobuf code"
-          git push origin main  # Adjust branch name as necessary
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - name: Commit and push changes
+              run: |
+                  git config user.name "iAmGreatt"
+                  git config user.email "greatjohncena9@gmail.com"
+                  git add generated/*
+                  git commit -m "Generate protobuf code"
+                  git push origin main  # Adjust branch name as necessary
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
