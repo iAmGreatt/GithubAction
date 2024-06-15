@@ -2,7 +2,11 @@ name: First Workflow
 
 run-name: TESTING
 
-on: push
+on:
+    branches:
+        - main
+    tags:
+        - "*"
 
 permissions: write-all
 
