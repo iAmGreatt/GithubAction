@@ -3,10 +3,13 @@ name: First Workflow
 on: push
 
 jobs:
-  build:
+  setup:
     runs-on: ubuntu-latest  # Fixed the key from 'run-ons' to 'runs-on'
 
     steps:
       - uses: actions/checkout@v3
       - name: Run a sample GitHub Action
-        run: echo "This workflow ran successfully on the particular task" 
+        run: echo "This workflow ran successfully on the particular task"
+
+      - name: "Setting up go environment"
+        run: go version
